@@ -1,47 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
-  </head>
-  <body>
-    <script type="text/javascript">
+---
+layout: bootstrap
+title: Spatial Statistics Datasets, Reports, and Blogs
+---
 
-var w = 800,
-    h = 700;
+<h1>Your Research Blog</h1>
 
-var svg = d3.select("body").append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
+{% for post in site.posts %}
+{% case post.layout %}
+{% when 'post' %}
+<div class="alert alert-success">
+{% when 'dataset' %}
+<div class="alert alert-info">
+{% when 'report' %}
+<div class="alert alert-warning">
+{% else %}
+    <div class="panel-body">
+{% endcase %}
 
-svg.append("svg:circle")
-    .attr("cx", 350)
-    .attr("cy", 200)
-    .attr("r", 200)
-    .style("fill", "brown")
-    .style("fill-opacity", ".5");
-    
-svg.append("svg:circle")
-    .attr("cx", 550)
-    .attr("cy", 200)
-    .attr("r", 200)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+{{ post.date | date_to_string }}<h4>    <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }} 
+</a> </h4>
 
-svg.append("svg:circle")
-    .attr("cx", 550)
-    .attr("cy", 400)
-    .attr("r", 200)
-    .style("fill", "green")
-    .style("fill-opacity", ".5");
-
-svg.append("svg:circle")
-    .attr("cx", 350)
-    .attr("cy", 400)
-    .attr("r", 200)
-    .style("fill", "red")
-    .style("fill-opacity", ".5");
-
-
-    </script>
-  </body>
-</html>
+  </div>
+{% endfor %}
